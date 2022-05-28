@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "777418989132",
+    "project_id": "barber-app-44ce7",
+    "storage_bucket": "barber-app-44ce7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:777418989132:android:7dfb27134df4452e18dee9",
+        "android_client_info": {
+          "package_name": "com.muffidz.owners_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "777418989132-jo36r8682o6nsbbsob00grsg04sniakh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYLPa2-kpa-qILOLBa4F--m375gZfPobE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "777418989132-jo36r8682o6nsbbsob00grsg04sniakh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:777418989132:android:69ea5948552203e218dee9",
+        "android_client_info": {
+          "package_name": "com.muffidz.users_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "777418989132-jo36r8682o6nsbbsob00grsg04sniakh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYLPa2-kpa-qILOLBa4F--m375gZfPobE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "777418989132-jo36r8682o6nsbbsob00grsg04sniakh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
