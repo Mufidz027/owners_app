@@ -1,6 +1,7 @@
 // ignore_for_file: camel_case_types, library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
+import 'package:owners_app/barberScreens/upload_kepster_screen.dart';
 
 import '../widgets/my_drawer.dart';
 
@@ -39,6 +40,20 @@ class _homeScreenState extends State<homeScreen> {
           ),
         ),
         centerTitle: true,
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (c) => const UploadKepsterScreen()));
+            },
+            icon: const Icon(
+              Icons.add,
+              color: Colors.white,
+            ),
+          )
+        ],
       ),
     );
   }

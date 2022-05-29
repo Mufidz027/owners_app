@@ -3,7 +3,8 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import '../mainScreens/home_screen.dart';
+import '../authScreen/auth_screen.dart';
+import '../barberScreens/home_screen.dart';
 
 class MySplashScreen extends StatefulWidget {
   const MySplashScreen({Key? key}) : super(key: key);
@@ -18,14 +19,14 @@ class _MySplashScreenState extends State<MySplashScreen> {
     Timer(const Duration(seconds: 2), () async {
       //owner is alreadi login-in
       if (FirebaseAuth.instance.currentUser != null) {
-        //Navigator.push(
-        //     context, MaterialPageRoute(builder: (c) => const homeScreen()));
+        Navigator.push(
+            context, MaterialPageRoute(builder: (c) => const homeScreen()));
       } else //owner is not alreadi login-in
       {
         Navigator.push(
             context, MaterialPageRoute(builder: (c) => const homeScreen()));
-        // Navigator.push(
-        //     context, MaterialPageRoute(builder: (c) => const AuthScreen()));
+        Navigator.push(
+            context, MaterialPageRoute(builder: (c) => const AuthScreen()));
       }
     });
   }
