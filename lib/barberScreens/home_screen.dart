@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:owners_app/barberScreens/upload_kepster_screen.dart';
+import 'package:owners_app/widgets/text_delegate_header_widget.dart';
 
 import '../widgets/my_drawer.dart';
 
@@ -53,6 +54,14 @@ class _homeScreenState extends State<homeScreen> {
               color: Colors.white,
             ),
           )
+        ],
+      ),
+      body: CustomScrollView(
+        slivers: [
+          SliverPersistentHeader(
+            pinned: true,
+            delegate: TextDelegateHeaderWidget(title: "My Barbers"),
+          ),
         ],
       ),
     );
