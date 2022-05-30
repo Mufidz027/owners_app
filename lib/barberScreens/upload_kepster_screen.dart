@@ -1,16 +1,170 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:owners_app/barberScreens/home_screen.dart';
+import 'package:owners_app/widgets/progress_bar.dart';
 
 class UploadKepsterScreen extends StatefulWidget {
   const UploadKepsterScreen({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _UploadKepsterScreenState createState() => _UploadKepsterScreenState();
 }
 
 class _UploadKepsterScreenState extends State<UploadKepsterScreen> {
+  XFile? imgXFile;
+
+  final ImagePicker imagePicker = ImagePicker();
+
+  TextEditingController barberNameTextEditingController =
+      TextEditingController();
+  TextEditingController barberInfoTextEditingController =
+      TextEditingController();
+
+  bool uploading = false;
+  validateUploadForm() {
+    if (imgXFile != null) {
+      if (barberInfoTextEditingController.text.isNotEmpty &&
+          barberNameTextEditingController.text.isNotEmpty) {
+        setState(() {
+          uploading = true;
+        });
+        //1.upload image to storage - get download url
+        //2.save barber info to firestore database
+      } else {
+        Fluttertoast.showToast(msg: "Tolong tulis info dan nama barber.");
+      }
+    } else {
+      Fluttertoast.showToast(msg: "Tolong masukkan gambar.");
+    }
+  }
+
+  uploadFormScreen() {
+    return Scaffold(
+      appBar: AppBar(
+        leading: Padding(
+          padding: const EdgeInsets.all(5.0),
+          child: IconButton(
+            icon: const Icon(Icons.arrow_back_rounded),
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (c) => const homeScreen()));
+            },
+          ),
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              // validate uploud form
+              uploading == true ? null : validateUploadForm();
+            },
+            icon: const Icon(Icons.check),
+          ),
+        ],
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Color.fromARGB(255, 6, 79, 204),
+                Colors.black,
+              ],
+              begin: FractionalOffset(0.0, 0.0),
+              end: FractionalOffset(1.0, 0.0),
+              stops: [0.0, 1.0],
+              tileMode: TileMode.clamp,
+            ),
+          ),
+        ),
+        title: const Text("Upload New Barbers Photos"),
+        centerTitle: true,
+      ),
+      body: ListView(
+        children: [
+          uploading == true ? linearProgressBar() : Container(),
+          //image
+
+          Container(
+            //in video SizeBox
+            color: Colors.black,
+            alignment: Alignment.center,
+            height: 230,
+            width: double.infinity,
+            child: Center(
+              child: AspectRatio(
+                aspectRatio: 16 / 9,
+                child: Container(
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                    image: FileImage(
+                      File(
+                        imgXFile!.path,
+                      ),
+                    ),
+                  )),
+                ),
+              ),
+            ),
+          ),
+          const Divider(
+            color: Colors.blueAccent,
+            thickness: 1,
+          ),
+
+          //barber titel
+
+          ListTile(
+            leading: const Icon(
+              Icons.store_outlined,
+              color: Color.fromARGB(255, 8, 5, 185),
+            ),
+            title: SizedBox(
+              width: 250,
+              child: TextField(
+                controller: barberNameTextEditingController,
+                decoration: const InputDecoration(
+                    hintText: "Nama Barber",
+                    hintStyle: TextStyle(color: Colors.grey),
+                    border: InputBorder.none),
+              ),
+            ),
+          ),
+          const Divider(
+            color: Colors.blueAccent,
+            thickness: 1,
+          ),
+
+          //barber info image
+          ListTile(
+            leading: const Icon(
+              Icons.perm_device_information,
+              color: Color.fromARGB(255, 8, 5, 185),
+            ),
+            title: SizedBox(
+              width: 250,
+              child: TextField(
+                controller: barberInfoTextEditingController,
+                decoration: const InputDecoration(
+                    hintText: "info Barber",
+                    hintStyle: TextStyle(color: Colors.grey),
+                    border: InputBorder.none),
+              ),
+            ),
+          ),
+          const Divider(
+            color: Colors.blueAccent,
+            thickness: 1,
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return defaultScreen();
+    return imgXFile == null ? defaultScreen() : uploadFormScreen();
   }
 
   defaultScreen() {
@@ -30,7 +184,7 @@ class _UploadKepsterScreenState extends State<UploadKepsterScreen> {
             ),
           ),
         ),
-        title: const Text("Add New Barbers Photos"),
+        title: const Text("Tambah Barbers"),
         centerTitle: true,
       ),
       body: Container(
@@ -90,7 +244,9 @@ class _UploadKepsterScreenState extends State<UploadKepsterScreen> {
             ),
             children: [
               SimpleDialogOption(
-                onPressed: () {},
+                onPressed: () {
+                  captureImageWithPhoneCamera();
+                },
                 child: const Text(
                   "Gunakan kamera",
                   style: TextStyle(
@@ -99,7 +255,9 @@ class _UploadKepsterScreenState extends State<UploadKepsterScreen> {
                 ),
               ),
               SimpleDialogOption(
-                onPressed: () {},
+                onPressed: () {
+                  getImageFromGallerry();
+                },
                 child: const Text(
                   "Pilih dari Galeri",
                   style: TextStyle(
@@ -119,5 +277,21 @@ class _UploadKepsterScreenState extends State<UploadKepsterScreen> {
             ],
           );
         });
+  }
+
+  getImageFromGallerry() async {
+    Navigator.pop(context);
+    imgXFile = await imagePicker.pickImage(source: ImageSource.gallery);
+    setState(() {
+      imgXFile;
+    });
+  }
+
+  captureImageWithPhoneCamera() async {
+    Navigator.pop(context);
+    imgXFile = await imagePicker.pickImage(source: ImageSource.camera);
+    setState(() {
+      imgXFile;
+    });
   }
 }

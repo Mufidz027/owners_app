@@ -62,6 +62,7 @@ class _AuthScreenState extends State<AuthScreen> {
             ],
           ),
         ),
+        // ignore: avoid_unnecessary_containers
         body: Container(
           child: const TabBarView(
             children: [
