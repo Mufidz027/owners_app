@@ -1,7 +1,12 @@
 // ignore_for_file: camel_case_types, library_private_types_in_public_api
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:owners_app/barberScreens/barber_ui_design_widget.dart';
 import 'package:owners_app/barberScreens/upload_kepster_screen.dart';
+import 'package:owners_app/global/global.dart';
+import 'package:owners_app/models/barber.dart';
 import 'package:owners_app/widgets/text_delegate_header_widget.dart';
 
 import '../widgets/my_drawer.dart';
@@ -61,6 +66,49 @@ class _homeScreenState extends State<homeScreen> {
           SliverPersistentHeader(
             pinned: true,
             delegate: TextDelegateHeaderWidget(title: "My Barbers"),
+          ),
+
+          //1. write query
+          //2. model
+          //3. design widget
+
+          StreamBuilder(
+            stream: FirebaseFirestore.instance
+                .collection("barber")
+                .doc(sharedPreferences!.getString("uid"))
+                .collection("barber")
+                .orderBy("publishedDate", descending: true)
+                .snapshots(),
+            builder: (context, AsyncSnapshot dataSnapshot) {
+              if (dataSnapshot.hasData) // if barber exists
+              {
+                //display barber
+                return SliverStaggeredGrid.countBuilder(
+                  crossAxisCount: 1,
+                  staggeredTileBuilder: (c) => const StaggeredTile.fit(1),
+                  itemBuilder: (context, index) {
+                    Barber barberModel = Barber.fromJson(
+                      dataSnapshot.data.docs[index].data()
+                          as Map<String, dynamic>,
+                    );
+                    return BarberUiDesignWidget(
+                      model: barberModel,
+                      context: context,
+                    );
+                  },
+                  itemCount: dataSnapshot.data.docs.length,
+                );
+              } else // if barber NOT exists
+              {
+                return const SliverToBoxAdapter(
+                  child: Center(
+                    child: Text(
+                      "Tidak ada barber",
+                    ),
+                  ),
+                );
+              }
+            },
           ),
         ],
       ),

@@ -8,6 +8,7 @@ class TextDelegateHeaderWidget extends SliverPersistentHeaderDelegate {
   @override
   Widget build(
     BuildContext context,
+    // ignore: avoid_renaming_method_parameters
     double shrinkOffSet,
     bool overlapsContent,
   ) {
@@ -45,10 +46,12 @@ class TextDelegateHeaderWidget extends SliverPersistentHeaderDelegate {
   }
 
   @override
+  // ignore: todo
   // TODO: implement maxExtent
   double get maxExtent => 50;
 
   @override
+  // ignore: todo
   // TODO: implement minExtent
   double get minExtent => 50;
 

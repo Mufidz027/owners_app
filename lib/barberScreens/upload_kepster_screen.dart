@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+// ignore: unused_import
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -40,9 +41,9 @@ class _UploadKepsterScreenState extends State<UploadKepsterScreen> {
         .doc(barberUniqueId)
         .set({
       "barberID": barberUniqueId,
-      "ownerUID": sharedPreferences!.getString("uid"),
-      "ownerInfo": barberInfoTextEditingController.text.trim(),
-      "ownerName": barberNameTextEditingController.text.trim(),
+      "barberUID": sharedPreferences!.getString("uid"),
+      "barberInfo": barberInfoTextEditingController.text.trim(),
+      "barberName": barberNameTextEditingController.text.trim(),
       "publisheDate": DateTime.now(),
       "status": "available",
       "thumbnailUrl": downloadUrlImage,
