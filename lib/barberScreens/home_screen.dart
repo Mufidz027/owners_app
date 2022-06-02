@@ -74,10 +74,10 @@ class _homeScreenState extends State<homeScreen> {
 
           StreamBuilder(
             stream: FirebaseFirestore.instance
-                .collection("barber")
+                .collection("owners")
                 .doc(sharedPreferences!.getString("uid"))
                 .collection("barber")
-                .orderBy("publishedDate", descending: true)
+                .orderBy("publisheDate", descending: true)
                 .snapshots(),
             builder: (context, AsyncSnapshot dataSnapshot) {
               if (dataSnapshot.hasData) // if barber exists
