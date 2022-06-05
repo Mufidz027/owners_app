@@ -32,7 +32,10 @@ class _BarberUiDesignWidgetState extends State<BarberUiDesignWidget> {
       child: Card(
         elevation: 10,
         shadowColor: Colors.black,
-        child: Padding(
+        child: Container(
+          alignment: Alignment.center,
+          width: double.infinity,
+          color: Colors.black,
           padding: const EdgeInsets.all(4),
           child: SizedBox(
             height: 270,
@@ -52,7 +55,7 @@ class _BarberUiDesignWidgetState extends State<BarberUiDesignWidget> {
                   Text(
                     widget.model!.barberName.toString(),
                     style: const TextStyle(
-                      color: Colors.deepPurpleAccent,
+                      color: Colors.white,
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
                       letterSpacing: 3,

@@ -28,7 +28,9 @@ class Items {
     thumbnailUrl = json["thumbnailUrl"];
   }
 
-  get itemsName => null;
+  // get itemsName => null;
 
-  get itemsInfo => null;
+  // get itemsInfo => null;
+
+  get itemsDescription => null;
 }
