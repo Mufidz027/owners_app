@@ -29,6 +29,8 @@ class _UploadKepsterScreenState extends State<UploadKepsterScreen> {
       TextEditingController();
   TextEditingController barberInfoTextEditingController =
       TextEditingController();
+  // TextEditingController barberLayananTextEditingController =
+  //     TextEditingController();
 
   bool uploading = false;
   String downloadUrlImage = "";
@@ -44,7 +46,7 @@ class _UploadKepsterScreenState extends State<UploadKepsterScreen> {
       "barberUID": sharedPreferences!.getString("uid"),
       "barberInfo": barberInfoTextEditingController.text.trim(),
       "barberName": barberNameTextEditingController.text.trim(),
-      "publisheDate": DateTime.now(),
+      // "barberLayanan": barberLayananTextEditingController.text.trim(),
       "status": "available",
       "thumbnailUrl": downloadUrlImage,
     });
@@ -59,7 +61,9 @@ class _UploadKepsterScreenState extends State<UploadKepsterScreen> {
   validateUploadForm() async {
     if (imgXFile != null) {
       if (barberInfoTextEditingController.text.isNotEmpty &&
-          barberNameTextEditingController.text.isNotEmpty) {
+              barberNameTextEditingController.text.isNotEmpty
+          //&& barberLayananTextEditingController.text.isNotEmpty
+          ) {
         setState(() {
           uploading = true;
         });
@@ -82,7 +86,8 @@ class _UploadKepsterScreenState extends State<UploadKepsterScreen> {
         //2.save barber info to firestore database
         saveBarberInfo();
       } else {
-        Fluttertoast.showToast(msg: "Tolong tulis info dan nama barber.");
+        Fluttertoast.showToast(
+            msg: "Tolong tulis nama, info, dan layanan barber.");
       }
     } else {
       Fluttertoast.showToast(msg: "Tolong masukkan gambar.");
@@ -204,6 +209,28 @@ class _UploadKepsterScreenState extends State<UploadKepsterScreen> {
             color: Colors.blueAccent,
             thickness: 1,
           ),
+
+          //layanan
+          // ListTile(
+          //   leading: const Icon(
+          //     Icons.room_service,
+          //     color: Color.fromARGB(255, 8, 5, 185),
+          //   ),
+          //   title: SizedBox(
+          //     width: 250,
+          //     child: TextField(
+          //       controller: barberLayananTextEditingController,
+          //       decoration: const InputDecoration(
+          //           hintText: "layanan Barber",
+          //           hintStyle: TextStyle(color: Colors.grey),
+          //           border: InputBorder.none),
+          //     ),
+          //   ),
+          // ),
+          // const Divider(
+          //   color: Colors.blueAccent,
+          //   thickness: 1,
+          // ),
         ],
       ),
     );

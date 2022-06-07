@@ -28,8 +28,8 @@ class _homeScreenState extends State<homeScreen> {
           decoration: const BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                Color.fromARGB(255, 6, 79, 204),
-                Colors.red,
+                Colors.black,
+                Colors.black,
               ],
               begin: FractionalOffset(0.0, 0.0),
               end: FractionalOffset(1.0, 0.0),

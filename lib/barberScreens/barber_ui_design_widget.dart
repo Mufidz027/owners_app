@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:owners_app/itemsScreens/items_screen.dart';
+import 'package:owners_app/barberScreens/barber_details_screen.dart';
 import 'package:owners_app/models/barber.dart';
 
 // ignore: must_be_immutable
@@ -25,7 +25,7 @@ class _BarberUiDesignWidgetState extends State<BarberUiDesignWidget> {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (c) => ItemsScreen(
+                builder: (c) => BarberDetailsScreen(
                       model: widget.model,
                     )));
       },
