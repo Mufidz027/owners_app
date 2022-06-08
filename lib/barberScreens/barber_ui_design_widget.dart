@@ -61,13 +61,13 @@ class _BarberUiDesignWidgetState extends State<BarberUiDesignWidget> {
                       letterSpacing: 3,
                     ),
                   ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.delete_sweep,
-                      color: Colors.redAccent,
-                    ),
-                  )
+                  // IconButton(
+                  //   onPressed: () {},
+                  //   icon: const Icon(
+                  //     Icons.delete_sweep,
+                  //     color: Colors.redAccent,
+                  //   ),
+                  // )
                 ],
               ),
             ]),
