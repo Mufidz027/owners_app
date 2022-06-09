@@ -36,7 +36,8 @@ class _BarberDetailsScreenState extends State<BarberDetailsScreen> {
           .delete();
 
       Fluttertoast.showToast(msg: "Barber Telah Dihapus.");
-      Navigator.push(context, MaterialPageRoute(builder: (c) => homeScreen()));
+      Navigator.push(
+          context, MaterialPageRoute(builder: (c) => const homeScreen()));
     });
   }
 

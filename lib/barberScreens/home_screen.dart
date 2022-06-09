@@ -77,7 +77,7 @@ class _homeScreenState extends State<homeScreen> {
                 .collection("owners")
                 .doc(sharedPreferences!.getString("uid"))
                 .collection("barber")
-                .orderBy("publisheDate", descending: true)
+                .orderBy("barberID", descending: true)
                 .snapshots(),
             builder: (context, AsyncSnapshot dataSnapshot) {
               if (dataSnapshot.hasData) // if barber exists
@@ -91,6 +91,7 @@ class _homeScreenState extends State<homeScreen> {
                       dataSnapshot.data.docs[index].data()
                           as Map<String, dynamic>,
                     );
+                    // print(barberModel);
                     return BarberUiDesignWidget(
                       model: barberModel,
                       context: context,
