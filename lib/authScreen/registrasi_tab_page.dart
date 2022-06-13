@@ -185,7 +185,7 @@ class _RegistrasiTabPageState extends State<RegistrasiTabPage> {
                   CustomTextField(
                     textEditingController: nameTextEditingController,
                     iconData: Icons.person,
-                    hintText: "Woi masukin nama lu",
+                    hintText: "Nama Barbershop",
                     isObsecre: false,
                     enabled: true,
                   ),
@@ -220,7 +220,7 @@ class _RegistrasiTabPageState extends State<RegistrasiTabPage> {
                   CustomTextField(
                     textEditingController: passwordTextEditingController,
                     iconData: Icons.lock,
-                    hintText: "Password",
+                    hintText: "Password 6 digit",
                     isObsecre: true,
                     enabled: true,
                   ),
